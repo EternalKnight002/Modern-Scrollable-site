@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PulseAIR  Buds
 
-## Getting Started
+## Overview
 
-First, run the development server:
+PulseAIR Buds is a premium, high-end landing page designed to showcase next-generation audio technology. This project leverages **Next.js 16**, **Tailwind CSS v4**, and **Framer Motion** to deliver an immersive "scrollytelling" experience, featuring a cinematic product reveal that responds to user interaction.
+
+## ✨ Features
+
+- **Immersive Scrollytelling**: A dynamic image sequence that simulates a product explosion/assembly as the user scrolls.
+- **Stealth Luxury Aesthetic**: A dark, sophisticated UI design focusing on minimalism and high contrast.
+- **Responsive Design**: Fully responsive layout that preserves the premium feel across all devices.
+- **Smooth Animations**: Powered by Framer Motion for fluid transitions and micro-interactions.
+- **Modern Tech Stack**: Built with the latest web technologies for performance and scalability.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: TypeScript
+
+## 🚀 Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+- Node.js (Latest LTS version recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/EternalKnight002/Modern-Scrollable-site.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd buds
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running Locally
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+├── app/                  # Next.js App Router pages and layouts
+│   ├── layout.tsx        # Global layout
+│   └── page.tsx          # Main landing page
+├── components/           # Reusable UI components
+│   ├── EarbudScroll.tsx  # Core scrollytelling component
+│   ├── HeroOverlay.tsx   # Hero section overlay
+│   ├── Navbar.tsx        # Navigation bar
+│   └── Footer.tsx        # Footer section
+├── public/               # Static assets
+│   └── tws-pics/         # Image sequence for scroll animation
+└── ...
+```
 
-## Learn More
+## 🤝 Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is open-source and available under the [MIT License](LICENSE).
