@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const FRAME_COUNT = 120;
+const FRAME_COUNT = 40;
 
 export default function EarbudScroll() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -116,7 +116,7 @@ export default function EarbudScroll() {
     }, [currentIndex, images, imagesLoaded]);
 
     return (
-        <div ref={containerRef} className="relative h-[400vh] bg-black">
+        <div ref={containerRef} className="relative h-[300vh] bg-black">
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 <canvas
                     ref={canvasRef}
