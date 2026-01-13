@@ -10,6 +10,7 @@ export default function EarbudScroll() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [loadProgress, setLoadProgress] = useState(0);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -35,6 +36,8 @@ export default function EarbudScroll() {
                     img.src = `/tws-pics/ezgif-frame-${paddedIndex}.jpg`;
                     img.onload = () => {
                         loadedImages[i - 1] = img;
+                        const count = loadedImages.filter(Boolean).length;
+                        setLoadProgress(Math.round((count / FRAME_COUNT) * 100));
                         resolve();
                     };
                     img.onerror = () => {
@@ -120,29 +123,32 @@ export default function EarbudScroll() {
             <div className="sticky top-0 h-screen w-full overflow-hidden">
                 <canvas
                     ref={canvasRef}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover will-change-transform"
+                    aria-label="Animation of Zenith earbuds disassembling to show internal components"
+                    role="img"
                 />
 
                 {/* Text Overlay 1 */}
-                <motion.div style={{ opacity: text1Opacity }} className="absolute left-10 top-1/2 -translate-y-1/2 text-white pointer-events-none z-10">
-                    <h2 className="text-4xl font-bold md:text-6xl">Precision Engineering.</h2>
-                    <p className="text-xl text-white/70">Every component aligned.</p>
+                <motion.div style={{ opacity: text1Opacity }} className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 text-white pointer-events-none z-10 max-w-[80%]">
+                    <h2 className="text-2xl font-bold md:text-6xl">Precision Engineering.</h2>
+                    <p className="text-lg text-white/70 md:text-xl">Every component aligned.</p>
                 </motion.div>
 
                 {/* Text Overlay 2 */}
-                <motion.div style={{ opacity: text2Opacity }} className="absolute right-10 top-1/2 -translate-y-1/2 text-right text-white pointer-events-none z-10">
-                    <h2 className="text-4xl font-bold md:text-6xl">Titanium Drivers.</h2>
-                    <p className="text-xl text-white/70">11mm of pure power.</p>
+                <motion.div style={{ opacity: text2Opacity }} className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 text-right text-white pointer-events-none z-10 max-w-[80%] ml-auto">
+                    <h2 className="text-2xl font-bold md:text-6xl">Titanium Drivers.</h2>
+                    <p className="text-lg text-white/70 md:text-xl">11mm of pure power.</p>
                 </motion.div>
 
                 {/* Text Overlay 3 */}
-                <motion.div style={{ opacity: text3Opacity }} className="absolute left-0 right-0 top-3/4 text-center text-white pointer-events-none z-10">
-                    <h2 className="text-4xl font-bold md:text-6xl">All Day Battery.</h2>
+                <motion.div style={{ opacity: text3Opacity }} className="absolute left-0 right-0 top-3/4 text-center text-white pointer-events-none z-10 px-4">
+                    <h2 className="text-2xl font-bold md:text-6xl">All Day Battery.</h2>
                 </motion.div>
 
                 {!imagesLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black gap-4">
                         <div className="h-8 w-8 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                        <p className="text-white/50 text-sm font-mono">{loadProgress}%</p>
                     </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 pointer-events-none" />
