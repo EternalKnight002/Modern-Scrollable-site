@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const FRAME_COUNT = 40;
+const FRAME_COUNT = 120;
 
 export default function EarbudScroll() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -11,14 +11,17 @@ export default function EarbudScroll() {
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
-    
-
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"],
     });
 
     const currentIndex = useTransform(scrollYProgress, [0, 1], [1, FRAME_COUNT]);
+
+    // Text Opacity Logic
+    const text1Opacity = useTransform(scrollYProgress, [0.1, 0.2, 0.3], [0, 1, 0]); // "Precision"
+    const text2Opacity = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [0, 1, 0]); // "Titanium"
+    const text3Opacity = useTransform(scrollYProgress, [0.7, 0.8, 0.9], [0, 1, 0]); // "Battery"
 
     useEffect(() => {
         const loadImages = async () => {
@@ -119,6 +122,24 @@ export default function EarbudScroll() {
                     ref={canvasRef}
                     className="h-full w-full object-cover"
                 />
+
+                {/* Text Overlay 1 */}
+                <motion.div style={{ opacity: text1Opacity }} className="absolute left-10 top-1/2 -translate-y-1/2 text-white pointer-events-none z-10">
+                    <h2 className="text-4xl font-bold md:text-6xl">Precision Engineering.</h2>
+                    <p className="text-xl text-white/70">Every component aligned.</p>
+                </motion.div>
+
+                {/* Text Overlay 2 */}
+                <motion.div style={{ opacity: text2Opacity }} className="absolute right-10 top-1/2 -translate-y-1/2 text-right text-white pointer-events-none z-10">
+                    <h2 className="text-4xl font-bold md:text-6xl">Titanium Drivers.</h2>
+                    <p className="text-xl text-white/70">11mm of pure power.</p>
+                </motion.div>
+
+                {/* Text Overlay 3 */}
+                <motion.div style={{ opacity: text3Opacity }} className="absolute left-0 right-0 top-3/4 text-center text-white pointer-events-none z-10">
+                    <h2 className="text-4xl font-bold md:text-6xl">All Day Battery.</h2>
+                </motion.div>
+
                 {!imagesLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black">
                         <div className="h-8 w-8 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
