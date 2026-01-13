@@ -82,5 +82,6 @@ This project is open-source and available under the [MIT License](LICENSE).
 ## 📝 Contact
 
 For any inquiries or feedback, please contact EternalKnight002@gmail.com.
+## 
 
-Created by EternalKnight002 — Built to learn, optimized for scale.
+    Created by EternalKnight002 — Built to learn, optimized for scale.
